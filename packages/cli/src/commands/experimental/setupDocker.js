@@ -16,12 +16,6 @@ export function builder(yargs) {
       description: 'Overwrite existing configuration',
       type: 'boolean',
     })
-    .option('verbose', {
-      alias: 'v',
-      default: false,
-      description: 'Print more logs',
-      type: 'boolean',
-    })
     .epilogue(getEpilogue(command, description, EXPERIMENTAL_TOPIC_ID, true))
 }
 
@@ -31,6 +25,7 @@ export async function handler(options) {
     force: options.force,
     verbose: options.verbose,
   })
+
   const { handler } = await import('./setupDockerHandler.js')
   return handler(options)
 }

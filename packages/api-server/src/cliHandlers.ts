@@ -46,6 +46,8 @@ export const webCliOptions = {
 } as const
 
 export const apiServerHandler = async (options: ApiServerArgs) => {
+  // TODO: load .env.defaults
+
   const { port, socket, apiRootPath } = options
   const tsApiServer = Date.now()
   process.stdout.write(c.dim(c.italic('Starting API Server...\n')))

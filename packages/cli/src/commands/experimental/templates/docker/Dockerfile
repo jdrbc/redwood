@@ -23,6 +23,7 @@ RUN --mount=type=cache,target=/home/node/.yarn/berry/cache,uid=1000 \
 
 COPY --chown=node:node redwood.toml .
 COPY --chown=node:node graphql.config.js .
+COPY --chown=node:node .env.defaults .env.defaults
 
 # api build
 # ------------------------------------------------
@@ -68,6 +69,7 @@ RUN --mount=type=cache,target=/home/node/.yarn/berry/cache,uid=1000 \
 
 COPY --chown=node:node redwood.toml .
 COPY --chown=node:node graphql.config.js .
+COPY --chown=node:node .env.defaults .env.defaults
 
 COPY --chown=node:node --from=api_build /home/node/app/api/dist /home/node/app/api/dist
 COPY --chown=node:node --from=api_build /home/node/app/api/db /home/node/app/api/db
@@ -96,6 +98,7 @@ RUN --mount=type=cache,target=/home/node/.yarn/berry/cache,uid=1000 \
 
 COPY --chown=node:node redwood.toml .
 COPY --chown=node:node graphql.config.js .
+COPY --chown=node:node .env.defaults .env.defaults
 
 COPY --chown=node:node --from=web_build /home/node/app/web/dist /home/node/app/web/dist
 
@@ -103,7 +106,7 @@ ENV NODE_ENV=production \
     API_HOST=http://api:8911
 
 # We use the shell form here for variable expansion.
-CMD "node_modules/.bin/rw-server" "web" "--apiHost" "$API_HOST"
+CMD "node_modules/.bin/rw-web-server" "--apiHost" "$API_HOST"
 
 # console
 # ------------------------------------------------

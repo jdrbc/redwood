@@ -17,7 +17,7 @@ yarn rw setup docker
 You should have a `Dockerfile` and a `docker-compose.yml` file for local development which you can start with:
 
 ```
-docker compose up
+docker compose -f ./docker-compose.dev.yml up
 ```
 
 <!-- The first time you do this, you'll have to use the console to go in and migrate the database—just like you would with a Redwood app on your machine. -->
